@@ -1,6 +1,17 @@
 # GMGN App
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue?style=flat-square&logo=github)](https://harry-chen-dev.github.io/gmgn_app/)
+[![Flutter](https://img.shields.io/badge/Flutter-3.16.0-blue?style=flat-square&logo=flutter)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.0+-blue?style=flat-square&logo=dart)](https://dart.dev)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+
 一款基于 Flutter 开发的加密货币交易和资产管理移动应用，1:1 还原 GMGN.ai 的设计稿。
+
+## 🌐 在线演示
+
+**[🚀 立即体验 - GitHub Pages 演示](https://harry-chen-dev.github.io/gmgn_app/)**
+
+> 注意：首次加载可能需要一些时间，建议使用 Chrome 浏览器获得最佳体验。
 
 ## 📱 项目概述
 
@@ -263,7 +274,9 @@ flutter test integration_test/
 
 如有问题或建议，请通过以下方式联系：
 
-- 项目 Issues: [GitHub Issues](https://github.com/your-repo/gmgn_app/issues)
+- 项目 Issues: [GitHub Issues](https://github.com/Harry-Chen-Dev/gmgn_app/issues)
+- GitHub 仓库: [https://github.com/Harry-Chen-Dev/gmgn_app](https://github.com/Harry-Chen-Dev/gmgn_app)
+- 在线演示: [https://harry-chen-dev.github.io/gmgn_app/](https://harry-chen-dev.github.io/gmgn_app/)
 - 邮箱: your-email@example.com
 
 ## 🙏 致谢
