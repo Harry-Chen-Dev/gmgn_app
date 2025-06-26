@@ -14,19 +14,28 @@ class _ExpertsPageState extends State<ExpertsPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
   int selectedTabIndex = 0; // 用于牛人榜内部的Tab
+  int currentMainTabIndex = 0; // 用于顶部主Tab（牛人榜/钱包跟单）
   final List<String> tabs = ['全部', 'Pump聪明钱', '聪明钱', '新钱包', 'KOL/VC'];
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _tabController.addListener(() {
-      setState(() {});
-    });
+    _tabController.addListener(_onTabChanged);
+  }
+
+  void _onTabChanged() {
+    if (_tabController.indexIsChanging ||
+        _tabController.index != currentMainTabIndex) {
+      setState(() {
+        currentMainTabIndex = _tabController.index;
+      });
+    }
   }
 
   @override
   void dispose() {
+    _tabController.removeListener(_onTabChanged);
     _tabController.dispose();
     super.dispose();
   }
@@ -63,7 +72,12 @@ class _ExpertsPageState extends State<ExpertsPage>
       child: Row(
         children: [
           GestureDetector(
-            onTap: () => _tabController.animateTo(0),
+            onTap: () {
+              _tabController.animateTo(0);
+              setState(() {
+                currentMainTabIndex = 0;
+              });
+            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -72,11 +86,11 @@ class _ExpertsPageState extends State<ExpertsPage>
                   style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: _tabController.index == 0
+                      color: currentMainTabIndex == 0
                           ? const Color(0xFF333333)
                           : const Color(0xFF999999)),
                 ),
-                if (_tabController.index == 0)
+                if (currentMainTabIndex == 0)
                   Container(
                     margin: const EdgeInsets.only(top: 2),
                     width: 40,
@@ -91,7 +105,12 @@ class _ExpertsPageState extends State<ExpertsPage>
           ),
           const SizedBox(width: 20),
           GestureDetector(
-            onTap: () => _tabController.animateTo(1),
+            onTap: () {
+              _tabController.animateTo(1);
+              setState(() {
+                currentMainTabIndex = 1;
+              });
+            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -99,15 +118,15 @@ class _ExpertsPageState extends State<ExpertsPage>
                   '钱包跟单',
                   style: TextStyle(
                     fontSize: 16,
-                    color: _tabController.index == 1
+                    color: currentMainTabIndex == 1
                         ? const Color(0xFF333333)
                         : const Color(0xFF999999),
-                    fontWeight: _tabController.index == 1
+                    fontWeight: currentMainTabIndex == 1
                         ? FontWeight.bold
                         : FontWeight.normal,
                   ),
                 ),
-                if (_tabController.index == 1)
+                if (currentMainTabIndex == 1)
                   Container(
                     margin: const EdgeInsets.only(top: 2),
                     width: 60,
@@ -124,7 +143,7 @@ class _ExpertsPageState extends State<ExpertsPage>
           Row(
             children: [
               const Icon(Icons.search, color: Color(0xFF999999), size: 24),
-              if (_tabController.index == 1) ...[
+              if (currentMainTabIndex == 1) ...[
                 const SizedBox(width: 16),
                 Container(
                   padding:
